@@ -1,0 +1,51 @@
+1.Port Scan Code:
+host="www.example.com"
+
+read -p"enter the starting port number: " start_port
+read -p"enter the ending port number: " end_port
+
+for ((port=start_port;port<=end_port; port++ ))
+do
+	echo "Scanning port $port..."
+	nc -zv -w 1 "$host" "$port" 2>&1
+done 
+
+
+
+2. Communication across machine/terminals
+
+t-1/m-1
+nc -vlp 1234
+
+t-2/m-2
+nv localhost/<ip_of_m-1> 1234
+
+
+3. raw get/head header
+
+nc example.com 80
+
+GET / HTTP/1.1
+Host: example.com
+
+HEAD / HTTP/1.1
+Host: example.com
+
+4. 
+
+
+HTTP/1.1 200 OK
+Content-Type: text/html Charset=UTF-8
+Sever=Nooblinux
+
+Hello from Noob
+
+HTTP/1.1 200 OK
+Content-Type: text/html Charset=UTF-8
+Sever: Nooblinux
+
+<!doctype html>
+<html>
+<h1> Hi from Server </h1/
+<img src = "https://www.freepik.com/premium-photo/medium-shot-woman-living-farmhouse_53946251.htm#from_element=category_discover&from_view=category">
+</html>

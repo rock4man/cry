@@ -1,0 +1,168 @@
+1b. 
+from scapy.all import *
+frame=IP()/TCP()
+e_pac=Ether()/frame
+e_pac.show()	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.
+from scapy.all import *
+packets=sniff(count=10)
+packet.summary()
+print(packets[0].show())
+print(packets[1].show())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3,12.
+from scapy.all import *
+res,uns=traceroute(["www.example.com","www.google.com"],maxttl=20)
+res.show()
+uns,show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4,11.
+import scapy.all as scapy
+request = scapy.ARP()
+request.pdst = "192.168.1.1/28"
+broadcast = scapy.Ether()
+broadcast.dst = "ff:ff:ff:ff:ff:ff"
+request_broadcast = broadcast / request
+clients = scapy.srp(request_broadcast, timeout=1)[0]
+for element in clients:
+    print(element[1].psrc + " - " + element[1].hwsrc)
+
+
+
+
+
+
+
+
+
+
+5.
+from scapy.all import *
+packet=IP(dst="8.8.8.8")/ICMP()
+send(packet)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8.
+from scapy.all import *
+trg="www.example.com"
+for port in range(20,25):
+	packet=IP(dst=trg)/TCP(dport=port,flags="S")
+	response=sr1(packet,timeout=1,verbose=0)
+	if response:
+		print("Port", port , "is open")
+
+
+
+
+
+
+
+
+
+
+
+
+
+10
+from scapy.all import *
+def callback(packet):
+	if packet.haslayer(ICMP):
+		print("icmp packet detected")
+		packet.show()
+sniff(filter="icmp",prn=callback,count=10)
+
