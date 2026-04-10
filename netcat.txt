@@ -41,11 +41,9 @@ Sever=Nooblinux
 Hello from Noob
 
 HTTP/1.1 200 OK
-Content-Type: text/html Charset=UTF-8
-Sever: Nooblinux
+Content-Type: text/html; charset=UTF-8
+Server: Nooblinux
 
 <!doctype html>
-<html>
-<h1> Hi from Server </h1/
-<img src = "https://www.freepik.com/premium-photo/medium-shot-woman-living-farmhouse_53946251.htm#from_element=category_discover&from_view=category">
-</html>
+<title>Nooblinux</title>
+<img src="https://img.freepik.com/free-photo/parakeet-platycercus-barnardii-illustrated-by-elizabeth-gould_53876-65557.jpg">
