@@ -137,14 +137,17 @@ send(packet)
 
 
 
-8.
 from scapy.all import *
-trg="www.example.com"
-for port in range(20,25):
-	packet=IP(dst=trg)/TCP(dport=port,flags="S")
-	response=sr1(packet,timeout=1,verbose=0)
-	if response:
-		print("Port", port , "is open")
+target_ip = "93.184.215.14"
+ports = [22, 80, 443]
+for port in ports:
+    packet = IP(dst=target_ip)/TCP(dport=port, flags="S")
+    response = sr1(packet, timeout=1, verbose=0)
+    if response:
+        if response[TCP].flags == "SA":
+            print(f"Port {port} is open.")
+        elif response[TCP].flags == "RA":
+            print(f"Port {port} is closed.")
 
 
 
@@ -158,11 +161,9 @@ for port in range(20,25):
 
 
 
-10
 from scapy.all import *
-def callback(packet):
-	if packet.haslayer(ICMP):
-		print("icmp packet detected")
-		packet.show()
-sniff(filter="icmp",prn=callback,count=10)
+def packet_callback(packet):
+    if packet.haslayer(IP) and packet[IP].proto == 1: 
+        print(f"ICMP packet from {packet[IP].src}")
+sniff(prn=packet_callback, filter="icmp", store=0)
 
